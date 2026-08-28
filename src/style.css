@@ -679,6 +679,17 @@ nav {
   .description {
     font-size: 0.95rem;
   }
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 50px;
+  }
+  .cta-group .btn {
+    flex: none;
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 /* -------------------------------------------------------------
@@ -1395,4 +1406,101 @@ footer {
     top: 230px;
     right: 25px;
   }
+  /* Hide keyboard instructions on mobile */
+  .hud-controls {
+    display: none !important;
+  }
+}
+
+/* ── Mobile Virtual Controls ── */
+#mobile-game-controls {
+  position: fixed;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 25px;
+  z-index: 10000;
+  pointer-events: none; /* Let pointer events pass through container */
+}
+
+#mobile-game-controls.hidden {
+  display: none !important;
+}
+
+.mobile-steer-cluster,
+.mobile-pedal-cluster {
+  display: flex;
+  gap: 15px;
+  pointer-events: auto; /* Re-enable pointer events for controls */
+}
+
+.mobile-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(10, 10, 22, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: var(--card-shadow);
+  transition: background 0.12s, border-color 0.12s, transform 0.12s, box-shadow 0.12s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.mobile-btn:active,
+.mobile-btn.active {
+  transform: scale(0.9);
+}
+
+/* Steer Left / Right styles */
+#mobile-btn-left,
+#mobile-btn-right {
+  border-color: rgba(0, 242, 254, 0.35);
+  color: var(--primary-color);
+}
+
+#mobile-btn-left:active, #mobile-btn-left.active,
+#mobile-btn-right:active, #mobile-btn-right.active {
+  background: rgba(0, 242, 254, 0.22);
+  border-color: var(--primary-color);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Gas and Brake custom colors */
+.brake-btn {
+  border-color: rgba(255, 0, 122, 0.35);
+  color: var(--accent-pink);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+.brake-btn:active, .brake-btn.active {
+  background: rgba(255, 0, 122, 0.22);
+  border-color: var(--accent-pink);
+  box-shadow: var(--glow-pink);
+}
+
+.gas-btn {
+  border-color: rgba(0, 255, 136, 0.35);
+  color: #00ff88;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+}
+
+.gas-btn:active, .gas-btn.active {
+  background: rgba(0, 255, 136, 0.22);
+  border-color: #00ff88;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }

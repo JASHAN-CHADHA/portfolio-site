@@ -134,6 +134,52 @@ export function initGame() {
   `;
   document.body.appendChild(victoryModal);
 
+  // ── Mobile Controls ──────────────────────────
+  const mobileControls = document.createElement('div');
+  mobileControls.id = 'mobile-game-controls';
+  mobileControls.className = 'hidden';
+  mobileControls.innerHTML = `
+    <div class="mobile-steer-cluster">
+      <button id="mobile-btn-left" class="mobile-btn" aria-label="Steer Left">◀</button>
+      <button id="mobile-btn-right" class="mobile-btn" aria-label="Steer Right">▶</button>
+    </div>
+    <div class="mobile-pedal-cluster">
+      <button id="mobile-btn-down" class="mobile-btn brake-btn" aria-label="Brake">BRAKE</button>
+      <button id="mobile-btn-up" class="mobile-btn gas-btn" aria-label="Accelerate">GAS</button>
+    </div>
+  `;
+  document.body.appendChild(mobileControls);
+
+  const setupMobileButton = (btnId, keyName) => {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+
+    const press = (e) => {
+      e.preventDefault();
+      keys[keyName] = true;
+      btn.classList.add('active');
+    };
+
+    const release = (e) => {
+      e.preventDefault();
+      keys[keyName] = false;
+      btn.classList.remove('active');
+    };
+
+    btn.addEventListener('touchstart', press, { passive: false });
+    btn.addEventListener('touchend', release, { passive: false });
+    btn.addEventListener('touchcancel', release, { passive: false });
+
+    btn.addEventListener('pointerdown', press);
+    btn.addEventListener('pointerup', release);
+    btn.addEventListener('pointercancel', release);
+  };
+
+  setupMobileButton('mobile-btn-left', 'left');
+  setupMobileButton('mobile-btn-right', 'right');
+  setupMobileButton('mobile-btn-up', 'up');
+  setupMobileButton('mobile-btn-down', 'down');
+
   document.getElementById('exit-sim-btn').addEventListener('click', exitBikeGame);
   document.getElementById('victory-close-btn').addEventListener('click', () => {
     victoryModal.classList.add('hidden');
@@ -171,6 +217,11 @@ function startBikeGame() {
   document.querySelector('header').style.opacity = '0.1';
 
   hudEl.classList.remove('hidden');
+
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth <= 1024);
+  if (isTouchDevice) {
+    document.getElementById('mobile-game-controls').classList.remove('hidden');
+  }
 
   // Build 3-D world
   buildRoad();
@@ -737,6 +788,11 @@ export function exitBikeGame() {
   gameState.active = false;
   gameState.speed  = 0;
   hudEl.classList.add('hidden');
+
+  const mobileCtrl = document.getElementById('mobile-game-controls');
+  if (mobileCtrl) {
+    mobileCtrl.classList.add('hidden');
+  }
 
   window.removeEventListener('keydown', onKeyDown);
   window.removeEventListener('keyup',   onKeyUp);
