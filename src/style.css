@@ -2691,3 +2691,170 @@ body.light-theme #chat-send-btn {
 body.light-theme .chat-time {
   color: #64748b;
 }
+
+/* =============================================================
+ * LIGHT MODE — Comprehensive Text Visibility Fixes
+ * ============================================================= */
+
+/* --- Global text fallback --- */
+body.light-theme p,
+body.light-theme span,
+body.light-theme li,
+body.light-theme a,
+body.light-theme label,
+body.light-theme small {
+  color: #1e293b;
+}
+
+body.light-theme a:hover { color: #0284c7; }
+
+/* --- Hero Section --- */
+body.light-theme .main-title { color: #0f172a; }
+body.light-theme .gradient-text {
+  background: linear-gradient(90deg, #0284c7, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+body.light-theme .description {
+  color: #475569 !important;
+}
+
+/* --- Section headings & tags --- */
+body.light-theme .section-title { color: #0f172a !important; }
+body.light-theme .section-tag   { color: #0284c7 !important; }
+body.light-theme .section-desc,
+body.light-theme .section-description {
+  color: #475569 !important;
+}
+
+/* --- About / Skills cards --- */
+body.light-theme .glass-card {
+  background: rgba(255,255,255,0.82) !important;
+  border-color: rgba(15,23,42,0.08) !important;
+  color: #0f172a;
+}
+body.light-theme .skill-card p,
+body.light-theme .skill-card span,
+body.light-theme .skill-card li { color: #334155; }
+body.light-theme .skill-card h3 { color: #0f172a; }
+
+body.light-theme .about-text,
+body.light-theme .about-text p { color: #334155; }
+
+body.light-theme .method-label { color: #475569; }
+body.light-theme .method-value { color: #0f172a; }
+body.light-theme .stat-label   { color: #475569; }
+
+/* --- Project Cards --- */
+body.light-theme .project-card {
+  background: rgba(255,255,255,0.88) !important;
+  border-color: rgba(15,23,42,0.08) !important;
+}
+body.light-theme .project-title { color: #0f172a !important; }
+body.light-theme .project-desc  { color: #475569 !important; }
+body.light-theme .project-tech span {
+  background: rgba(2,132,199,0.08);
+  color: #0284c7;
+  border-color: rgba(2,132,199,0.2);
+}
+body.light-theme .project-link {
+  color: #0284c7 !important;
+}
+body.light-theme .project-link:hover { color: #0f172a !important; }
+
+/* --- Contact Section --- */
+body.light-theme .contact-info h3,
+body.light-theme .contact-info p { color: #1e293b; }
+body.light-theme .contact-item {
+  background: rgba(255,255,255,0.85);
+  border-color: rgba(15,23,42,0.08);
+}
+body.light-theme .contact-item-label { color: #64748b; }
+body.light-theme .contact-item-value { color: #0f172a; }
+
+/* --- Footer --- */
+body.light-theme footer p,
+body.light-theme footer span,
+body.light-theme footer a { color: #475569; }
+body.light-theme .footer-link:hover { color: #0f172a; }
+
+/* --- Chat card & badge text in light mode --- */
+body.light-theme .chat-card        { color: #0f172a; }
+body.light-theme .chat-card strong { color: #0f172a; }
+body.light-theme .chat-card a      { color: #0284c7; }
+body.light-theme .chat-badge {
+  background: rgba(2,132,199,0.1);
+  border: 1px solid rgba(2,132,199,0.25);
+  color: #0284c7;
+}
+body.light-theme .chat-pill {
+  background: rgba(2,132,199,0.08);
+  color: #0284c7;
+}
+body.light-theme .chat-link { color: #0284c7 !important; }
+body.light-theme .chat-sender { color: #0284c7; }
+body.light-theme .chat-text p,
+body.light-theme .chat-text li,
+body.light-theme .chat-text strong { color: #0f172a; }
+body.light-theme .chat-text code {
+  background: rgba(15,23,42,0.06);
+  color: #7c3aed;
+  border: 1px solid rgba(15,23,42,0.1);
+}
+body.light-theme .chat-header-name  { color: #0f172a; }
+body.light-theme .chat-header-status { color: #64748b; }
+body.light-theme .chat-action-btn {
+  background: rgba(2,132,199,0.08);
+  border-color: rgba(2,132,199,0.25);
+  color: #0284c7;
+}
+body.light-theme .chat-action-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+body.light-theme .bot-title { color: #0f172a; }
+body.light-theme .bot-sub   { color: #64748b; }
+body.light-theme .chat-avatar {
+  background: rgba(2,132,199,0.12);
+  border-color: rgba(2,132,199,0.25);
+  color: #0284c7;
+}
+body.light-theme .chat-header-avatar {
+  background: linear-gradient(135deg, rgba(2,132,199,0.15), rgba(124,58,237,0.2));
+  border-color: rgba(2,132,199,0.3);
+  color: #0284c7;
+}
+
+/* --- Chatbot trigger icon --- */
+body.light-theme .chatbot-trigger-avatar {
+  background: linear-gradient(135deg, rgba(2,132,199,0.15), rgba(124,58,237,0.2));
+  border-color: rgba(2,132,199,0.25);
+  color: #0284c7;
+}
+
+/* =============================================================
+ * Start Ride / Game Button Styles
+ * ============================================================= */
+.btn-game {
+  background: linear-gradient(90deg, #7c3aed, #e11d48);
+  color: #ffffff !important;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  font-weight: 600;
+}
+
+.btn-game:hover {
+  background: linear-gradient(90deg, #6d28d9, #be123c);
+  box-shadow: 0 6px 22px rgba(124, 58, 237, 0.55);
+  transform: translateY(-2px);
+}
+
+body.light-theme .btn-game {
+  background: linear-gradient(90deg, #7c3aed, #e11d48);
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+}

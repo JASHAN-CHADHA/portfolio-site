@@ -283,7 +283,7 @@ function addBotMessage(htmlContent, actions = [], suggestions = null) {
   if (actions && actions.length > 0) {
     actionsHtml = `<div class="chat-actions">` + actions.map((act, idx) => `<button class="chat-action-btn" data-act-idx="${idx}">${act.text}</button>`).join('') + `</div>`;
   }
-  msgEl.innerHTML = `<div class="chat-avatar">🤖</div><div class="chat-bubble chat-bubble-bot"><div class="chat-sender">JASHAN.AI</div><div class="chat-text">${htmlContent}</div>${actionsHtml}<div class="chat-time">${formatTime()}</div></div>`;
+  msgEl.innerHTML = `<div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 14s1 1 3 1 3-1 3-1"/></svg></div><div class="chat-bubble chat-bubble-bot"><div class="chat-sender">JASHAN.AI</div><div class="chat-text">${htmlContent}</div>${actionsHtml}<div class="chat-time">${formatTime()}</div></div>`;
   if (actions && actions.length > 0) {
     msgEl.querySelectorAll('.chat-action-btn').forEach((b, i) => b.addEventListener('click', () => actions[i].action()));
   }
@@ -299,7 +299,7 @@ function showTypingIndicator() {
   const typingEl = document.createElement('div');
   typingEl.id = 'chat-typing-indicator';
   typingEl.className = 'chat-msg chat-msg-bot';
-  typingEl.innerHTML = `<div class="chat-avatar">🤖</div><div class="chat-bubble chat-bubble-bot chat-typing-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
+  typingEl.innerHTML = `<div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 14s1 1 3 1 3-1 3-1"/></svg></div><div class="chat-bubble chat-bubble-bot chat-typing-bubble"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
   chatbotMessages.appendChild(typingEl);
   scrollChatToBottom();
 }
@@ -415,10 +415,11 @@ function renderWelcomeMessage() {
     `<p>Hi! 👋 I'm <strong>Jashan.AI</strong>. I know everything about Jashandeep's projects and tech stack — or I can flip the theme, launch the game, or open the terminal. Pretty handy, right? 😄</p><p>What would you like to know?</p>`,
     `<p>Welcome! 🎉 I'm <strong>Jashan.AI</strong>, Jashandeep's AI sidekick. I can answer questions about him, his projects, or control parts of this 3D site.</p><p>Go ahead, ask me anything!</p>`
   ];
-  chatbotMessages.innerHTML = `<div class="chat-msg chat-msg-bot"><div class="chat-avatar">🤖</div><div class="chat-bubble chat-bubble-bot"><div class="chat-sender">JASHAN.AI</div><div class="chat-text">${pick(greetings)}</div><div class="chat-time">${formatTime()}</div></div></div>`;
+  chatbotMessages.innerHTML = `<div class="chat-msg chat-msg-bot"><div class="chat-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v1a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1-3-3v-1a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 14s1 1 3 1 3-1 3-1"/></svg></div><div class="chat-bubble chat-bubble-bot"><div class="chat-sender">JASHAN.AI</div><div class="chat-text">${pick(greetings)}</div><div class="chat-time">${formatTime()}</div></div></div>`;
   scrollChatToBottom();
 }
 
 function escapeHtml(str) {
   return str.replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[m]);
 }
+
