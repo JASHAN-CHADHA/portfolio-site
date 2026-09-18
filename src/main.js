@@ -4,6 +4,8 @@ import { initParticles } from './particles.js';
 import { initNavigation } from './navigation.js';
 import { initUI } from './ui.js';
 import { initGame } from './game.js';
+import { initTerminal } from './terminal.js';
+import { initChatbot } from './chatbot.js';
 
 // Bootstrapping the entire application sequence
 function startApp() {
@@ -24,6 +26,12 @@ function startApp() {
 
     // 5. Mount the arcade simulator mini-game
     initGame();
+
+    // 6. Mount interactive hacker developer terminal
+    initTerminal();
+
+    // 7. Mount AI portfolio assistant chatbot
+    initChatbot();
   }
 }
 

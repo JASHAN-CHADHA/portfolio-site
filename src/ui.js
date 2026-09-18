@@ -1,5 +1,5 @@
-import { togglePerformanceMode } from './scene.js';
-import { adjustParticleQuality } from './particles.js';
+import { togglePerformanceMode, setSceneTheme } from './scene.js';
+import { adjustParticleQuality, setParticlesTheme } from './particles.js';
 import gsap from 'gsap';
 
 // Audio State
@@ -16,19 +16,22 @@ const cursorDotLoc = { x: 0, y: 0 };
  * Initializes all client-side UI interactive features: Custom cursor, loader, audio nodes, form feedback.
  */
 export function initUI() {
-  // 1. Setup Custom Cursor Tracking
+  // 1. Setup Theme Mode (Light / Dark)
+  initTheme();
+
+  // 2. Setup Custom Cursor Tracking
   initCustomCursor();
 
-  // 2. Setup Preloader Timeout
+  // 3. Setup Preloader Timeout
   initLoader();
 
-  // 3. Audio & Control Toggles Setup
+  // 4. Audio & Control Toggles Setup
   initControls();
 
-  // 4. Contact Form Validation and Mock Transmission
+  // 5. Contact Form Validation and Mock Transmission
   initContactForm();
 
-  // 5. Setup Project Details Modals
+  // 6. Setup Project Details Modals
   initProjectModals();
 }
 
@@ -191,6 +194,85 @@ function initControls() {
     perfBtn.style.color = isHighQuality ? '' : '#ff007a';
     perfBtn.style.borderColor = isHighQuality ? '' : '#ff007a';
   });
+}
+
+/**
+ * Theme Manager: Toggles light / dark mode, updates UI icons,
+ * communicates with WebGL scene & particles, and persists to localStorage.
+ */
+function initTheme() {
+  const themeBtn = document.getElementById('theme-toggle');
+  const headerThemeBtn = document.getElementById('header-theme-toggle');
+
+  // Check saved theme or system preference
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  const isInitialLight = savedTheme === 'light' || (!savedTheme && prefersLight);
+
+  function applyTheme(isLight, animate = true) {
+    if (isLight) {
+      document.body.classList.add('light-theme');
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.body.classList.remove('light-theme');
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    // Update icons and tooltips on both buttons
+    [themeBtn, headerThemeBtn].forEach(btn => {
+      if (!btn) return;
+      btn.setAttribute('title', isLight ? 'Switch to Dark Theme' : 'Switch to Light Theme');
+      btn.setAttribute('aria-label', isLight ? 'Switch to Dark Theme' : 'Switch to Light Theme');
+      
+      const sun = btn.querySelector('.icon-sun');
+      const moon = btn.querySelector('.icon-moon');
+      if (sun && moon) {
+        if (isLight) {
+          sun.classList.remove('hidden');
+          moon.classList.add('hidden');
+        } else {
+          sun.classList.add('hidden');
+          moon.classList.remove('hidden');
+        }
+      }
+
+      if (animate) {
+        gsap.fromTo(btn, { scale: 0.85, rotate: isLight ? -30 : 30 }, { scale: 1, rotate: 0, duration: 0.4, ease: 'back.out(2)' });
+      }
+    });
+
+    // Update WebGL scene & particles
+    setSceneTheme(isLight, animate ? 0.6 : 0);
+    setParticlesTheme(isLight);
+
+    // Save to storage
+    localStorage.setItem('portfolio-theme', isLight ? 'light' : 'dark');
+  }
+
+  // Set initial state without animation delay
+  applyTheme(isInitialLight, false);
+
+  function handleThemeToggle() {
+    const isCurrentlyLight = document.body.classList.contains('light-theme');
+    applyTheme(!isCurrentlyLight, true);
+  }
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', handleThemeToggle);
+  }
+
+  if (headerThemeBtn) {
+    headerThemeBtn.addEventListener('click', handleThemeToggle);
+  }
+
+  // Listen for system theme changes if user has not explicitly set preference
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('portfolio-theme')) {
+        applyTheme(e.matches, true);
+      }
+    });
+  }
 }
 
 /**

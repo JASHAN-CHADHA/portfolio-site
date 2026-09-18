@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,6 +35,22 @@
 
     <!-- UI Controls (Floating) -->
     <div class="ui-controls">
+      <button id="theme-toggle" aria-label="Toggle theme mode" class="control-btn theme-toggle" title="Toggle Light/Dark Theme">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="icon-sun hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
       <button id="sound-toggle" aria-label="Toggle sound" class="control-btn">
         <svg class="icon-sound-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path d="M12 3v18l-5-5H3V8h4l5-5zm6.5 9c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM16 4.07v2.06c2.89.86 5 3.54 5 6.74s-2.11 5.88-5 6.74v2.06c4.01-.91 7-4.49 7-8.8s-2.99-7.89-7-8.8z"/>
@@ -46,6 +62,12 @@
       <button id="perf-toggle" aria-label="Toggle performance mode" class="control-btn" title="Toggle Graphics Mode">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </svg>
+      </button>
+      <button id="terminal-toggle" aria-label="Open CLI Terminal" class="control-btn terminal-toggle-btn" title="Open Interactive Terminal (`)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"></polyline>
+          <line x1="12" y1="19" x2="20" y2="19"></line>
         </svg>
       </button>
     </div>
@@ -65,6 +87,28 @@
           <a href="#contact" class="nav-link" data-section="4">Contact</a>
         </nav>
         <div class="header-action">
+          <button id="header-terminal-toggle" class="control-btn header-terminal-btn" aria-label="Open CLI Terminal" title="Open Interactive Terminal (`)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          </button>
+          <button id="header-theme-toggle" class="control-btn header-theme-btn" aria-label="Toggle theme mode" title="Toggle Light/Dark Theme">
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="icon-sun hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
           <a href="#contact" class="btn btn-nav btn-glow">Hire Me</a>
         </div>
       </header>
@@ -82,7 +126,7 @@
             <div class="cta-group">
               <a href="#projects" class="btn btn-primary btn-glow">Explore Work</a>
               <a href="#about" class="btn btn-secondary">Learn More</a>
-              <button id="start-game-btn" class="btn btn-primary btn-glow" aria-label="Start bike ride game">🏍️ Start Ride</button>
+              <button id="start-game-btn" class="btn btn-primary btn-glow" aria-label="Start bike ride game">ðŸï¸ Start Ride</button>
             </div>
           </div>
           <!-- Scroll Indicator -->
@@ -243,7 +287,7 @@
                     <span>Python</span>
                     <span>Render API</span>
                   </div>
-                  <a href="https://easy-pdf-tools-egbm.onrender.com/" target="_blank" class="project-link" data-project-id="1">
+                  <a href="https://easy-pdf-tools7.onrender.com/" target="_blank" class="project-link" data-project-id="1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </a>
                 </div>
@@ -360,6 +404,78 @@
           </div>
         </div>
       </footer>
+    </div>
+
+    <!-- Interactive Hacker CLI Terminal Window -->
+    <div id="terminal-window" class="glass-card terminal-container hidden" role="region" aria-label="Developer Terminal">
+      <div class="terminal-header">
+        <div class="terminal-actions">
+          <button class="term-btn term-btn-close" aria-label="Close terminal" title="Close (or press `)"></button>
+          <button class="term-btn term-btn-min" aria-label="Minimize terminal" title="Minimize"></button>
+          <button class="term-btn term-btn-max" aria-label="Maximize terminal" title="Maximize"></button>
+        </div>
+        <div class="terminal-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+          <span>jashandeep@portfolio-node:~ (zsh)</span>
+        </div>
+        <div class="terminal-badge">CLI v2.6</div>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-scanlines"></div>
+        <div class="terminal-output"></div>
+        <div class="terminal-input-row">
+          <span class="terminal-prompt-label">visitor@jashandeep:~$</span>
+          <input type="text" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="type 'help'..." aria-label="Terminal command input" />
+          <span class="terminal-cursor"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Assistant Floating Trigger Button -->
+    <button id="chatbot-trigger" class="chatbot-trigger-btn" aria-label="Open AI Portfolio Assistant" title="Chat with Jashan.AI">
+      <div class="chatbot-trigger-avatar">
+        <span class="bot-icon">ðŸ¤–</span>
+        <span class="chat-status-pulse"></span>
+      </div>
+      <div class="chatbot-trigger-label">
+        <span class="bot-title">JASHAN.AI</span>
+        <span class="bot-sub">Ask me anything</span>
+      </div>
+      <span class="chat-unread-dot"></span>
+    </button>
+
+    <!-- AI Assistant Chatbot Window -->
+    <div id="chatbot-window" class="glass-card chatbot-container hidden" role="dialog" aria-label="Jashan.AI Chatbot Window">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-header-avatar">ðŸ¤–</div>
+          <div>
+            <div class="chat-header-name">JASHAN.AI</div>
+            <div class="chat-header-status">
+              <span class="chat-status-dot"></span>
+              <span>ONLINE &middot; PORTFOLIO AGENT</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-header-btn chat-btn-clear" aria-label="Clear chat history" title="Clear Conversation">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          </button>
+          <button class="chat-header-btn chat-btn-close" aria-label="Close chat" title="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+      </div>
+      <div class="chat-messages" aria-live="polite"></div>
+      <div class="chat-chips-wrapper">
+        <div class="chat-chips"></div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask Jashan.AI a question..." autocomplete="off" spellcheck="false" aria-label="Chat message input" />
+        <button id="chat-send-btn" aria-label="Send message" title="Send (Enter)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
     </div>
 
     <!-- Main JS Bundle -->

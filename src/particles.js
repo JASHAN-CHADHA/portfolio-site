@@ -6,6 +6,8 @@ export const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
 // Visual meshes references
 let starfield;
+let starColorsDark = null;
+let starColorsLight = null;
 let homeMesh;
 let aboutMesh;
 let skillsMesh;
@@ -59,7 +61,8 @@ export function initParticles() {
 function createStarfield() {
   const count = 3000;
   const positions = new Float32Array(count * 3);
-  const colors = new Float32Array(count * 3);
+  starColorsDark = new Float32Array(count * 3);
+  starColorsLight = new Float32Array(count * 3);
 
   for (let i = 0; i < count; i++) {
     // Spread in a large sphere
@@ -73,33 +76,54 @@ function createStarfield() {
     positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
     positions[i * 3 + 2] = r * Math.cos(phi);
 
-    // Random colors: cyan, purple, and white
+    // Random colors: cyan, purple, and white/slate
     const mix = Math.random();
     if (mix < 0.4) {
-      colors[i * 3] = 0.5; // Red channel
-      colors[i * 3 + 1] = 0.95; // Green channel
-      colors[i * 3 + 2] = 1.0; // Blue channel (Cyan glow)
+      // Dark mode: Cyan glow
+      starColorsDark[i * 3] = 0.5;
+      starColorsDark[i * 3 + 1] = 0.95;
+      starColorsDark[i * 3 + 2] = 1.0;
+
+      // Light mode: Vibrant Sky Cyber Blue
+      starColorsLight[i * 3] = 0.01;
+      starColorsLight[i * 3 + 1] = 0.52;
+      starColorsLight[i * 3 + 2] = 0.78;
     } else if (mix < 0.8) {
-      colors[i * 3] = 0.8; 
-      colors[i * 3 + 1] = 0.2; 
-      colors[i * 3 + 2] = 1.0; // Purple glow
+      // Dark mode: Purple glow
+      starColorsDark[i * 3] = 0.8; 
+      starColorsDark[i * 3 + 1] = 0.2; 
+      starColorsDark[i * 3 + 2] = 1.0;
+
+      // Light mode: Royal Violet
+      starColorsLight[i * 3] = 0.48;
+      starColorsLight[i * 3 + 1] = 0.23;
+      starColorsLight[i * 3 + 2] = 0.93;
     } else {
-      colors[i * 3] = 1.0; 
-      colors[i * 3 + 1] = 1.0; 
-      colors[i * 3 + 2] = 1.0; // Pure white
+      // Dark mode: Pure white
+      starColorsDark[i * 3] = 1.0; 
+      starColorsDark[i * 3 + 1] = 1.0; 
+      starColorsDark[i * 3 + 2] = 1.0;
+
+      // Light mode: Slate/charcoal ambient dust
+      starColorsLight[i * 3] = 0.28;
+      starColorsLight[i * 3 + 1] = 0.35;
+      starColorsLight[i * 3 + 2] = 0.45;
     }
   }
 
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const isLightInitial = document.body.classList.contains('light-theme');
+  const activeColors = (isLightInitial ? starColorsLight : starColorsDark).slice();
+  geometry.setAttribute('color', new THREE.BufferAttribute(activeColors, 3));
 
   // Round glowing points material
   const material = new THREE.PointsMaterial({
     size: 0.9,
     vertexColors: true,
     transparent: true,
-    opacity: 0.5,
+    opacity: isLightInitial ? 0.65 : 0.5,
     sizeAttenuation: true,
     depthWrite: false
   });
@@ -616,12 +640,69 @@ export function adjustParticleQuality(isHigh) {
   const outer = homeMesh.getObjectByName("outerCube");
   
   if (isHigh) {
-    starfield.material.opacity = 0.5;
+    starfield.material.opacity = document.body.classList.contains('light-theme') ? 0.65 : 0.5;
     if (inner) inner.material.size = 0.28;
-    if (outer) outer.material.opacity = 0.5;
+    if (outer) outer.material.opacity = document.body.classList.contains('light-theme') ? 0.65 : 0.5;
   } else {
     starfield.material.opacity = 0.15;
     if (inner) inner.material.size = 0.45;
     if (outer) outer.material.opacity = 0.15;
+  }
+}
+
+/**
+ * Updates 3D mesh and particle colors and opacities for light / dark themes.
+ * @param {boolean} isLight
+ */
+export function setParticlesTheme(isLight) {
+  // 1. Starfield
+  if (starfield && starColorsDark && starColorsLight) {
+    const attr = starfield.geometry.attributes.color;
+    const target = isLight ? starColorsLight : starColorsDark;
+    for (let i = 0; i < target.length; i++) {
+      attr.array[i] = target[i];
+    }
+    attr.needsUpdate = true;
+    starfield.material.opacity = isLight ? 0.65 : 0.5;
+  }
+
+  // 2. Home Mesh
+  if (homeMesh) {
+    const inner = homeMesh.getObjectByName("innerSphere");
+    if (inner) {
+      inner.material.color.setHex(isLight ? 0x0284c7 : 0x00f2fe);
+      inner.material.opacity = isLight ? 0.9 : 0.8;
+    }
+    const outer = homeMesh.getObjectByName("outerCube");
+    if (outer) {
+      outer.material.color.setHex(isLight ? 0x7c3aed : 0xbd00ff);
+      outer.material.opacity = isLight ? 0.65 : 0.5;
+    }
+    const satellite = homeMesh.getObjectByName("satellite");
+    if (satellite) {
+      satellite.material.color.setHex(isLight ? 0xe11d48 : 0xff007a);
+    }
+  }
+
+  // 3. About Mesh
+  if (aboutMesh) {
+    aboutMesh.material.color.setHex(isLight ? 0x7c3aed : 0xbd00ff);
+    aboutMesh.material.opacity = isLight ? 0.85 : 0.75;
+  }
+
+  // 4. Skills Mesh
+  if (skillsMesh) {
+    skillsMesh.material.color.setHex(isLight ? 0xe11d48 : 0xff007a);
+    skillsMesh.material.opacity = isLight ? 0.95 : 0.9;
+    if (skillsMesh.children && skillsMesh.children[0] && skillsMesh.children[0].material) {
+      skillsMesh.children[0].material.color.setHex(isLight ? 0x7c3aed : 0xff007a);
+      skillsMesh.children[0].material.opacity = isLight ? 0.35 : 0.15;
+    }
+  }
+
+  // 5. Contact Mesh
+  if (contactMesh) {
+    contactMesh.material.color.setHex(isLight ? 0x0284c7 : 0x00f2fe);
+    contactMesh.material.opacity = isLight ? 0.95 : 0.85;
   }
 }

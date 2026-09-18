@@ -192,7 +192,7 @@ export function initGame() {
 // ─────────────────────────────────────────────
 //  Start game
 // ─────────────────────────────────────────────
-function startBikeGame() {
+export function startBikeGame() {
   gameState.active = true;
   gameState.score = 0;
   gameState.collected = [false, false, false, false];
