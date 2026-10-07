@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -118,7 +118,18 @@
         <!-- Hero Section -->
         <section id="hero" class="panel-section">
           <div class="content-wrapper text-center">
-            <h2 class="sub-title">Jashandeep Singh</h2>
+            <!-- Front Hero Avatar Badge for Instant Recognition -->
+            <a href="#about" class="hero-avatar-badge hover-glow" title="View Full Bio & System ID">
+              <div class="hero-avatar-ring">
+                <img src="/profile.jpg" alt="Jashandeep Singh" class="hero-avatar-img user-photo-target" />
+                <div class="hero-avatar-pulse-ring"></div>
+              </div>
+              <div class="hero-avatar-meta">
+                <span class="hero-avatar-status"><span class="status-dot pulsing"></span> OPERATOR ONLINE</span>
+                <span class="hero-avatar-name">Jashandeep Singh</span>
+              </div>
+            </a>
+            <h2 class="sub-title">Full Stack Engineer &amp; System Designer</h2>
             <h1 class="main-title">Full Stack <span class="gradient-text">Developer</span></h1>
             <p class="description">
               Engineering robust, high-performance web systems and full-stack solutions. Solving complex backend challenges while designing interactive frontend dimensions.
@@ -142,36 +153,36 @@
         <section id="about" class="panel-section">
           <div class="content-wrapper grid-2">
             <div class="about-visual">
-              <div class="glass-card visual-card">
+              <div class="glass-card visual-card cyber-photo-card hover-glow" id="cyber-photo-card">
+                <!-- Cyberpunk Holographic HUD frame elements -->
                 <div class="scanner-line"></div>
-                <div class="profile-placeholder">
-                  <div class="matrix-grid"></div>
-                  <!-- Inline SVG for dynamic, modern sci-fi avatar layout -->
-                  <svg viewBox="0 0 200 200" width="100%" height="100%">
-                    <defs>
-                      <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#00f2fe" />
-                        <stop offset="100%" stop-color="#bd00ff" />
-                      </linearGradient>
-                      <radialGradient id="avatar-glow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.3" />
-                        <stop offset="100%" stop-color="#000000" stop-opacity="0" />
-                      </radialGradient>
-                    </defs>
-                    <circle cx="100" cy="100" r="80" fill="url(#avatar-glow)" />
-                    <!-- Abstract geometric avatar -->
-                    <polygon points="100,30 160,80 140,150 60,150 40,80" fill="none" stroke="url(#avatar-grad)" stroke-width="2" />
-                    <polygon points="100,50 140,90 125,135 75,135 60,90" fill="none" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3" />
-                    <!-- Core central sphere -->
-                    <circle cx="100" cy="100" r="15" fill="url(#avatar-grad)" />
-                    <!-- Code brackets graphic -->
-                    <path d="M30 90 L15 100 L30 110" fill="none" stroke="#00f2fe" stroke-width="2" />
-                    <path d="M170 90 L185 100 L170 110" fill="none" stroke="#bd00ff" stroke-width="2" />
-                  </svg>
+                <div class="cyber-corner corner-tl"></div>
+                <div class="cyber-corner corner-tr"></div>
+                <div class="cyber-corner corner-bl"></div>
+                <div class="cyber-corner corner-br"></div>
+                
+                <div class="cyber-photo-header">
+                  <span class="cyber-chip"><span class="chip-glow">SYS</span> BIO-ID: #8094</span>
+                  <span class="cyber-live-rec"><span class="rec-dot pulsing"></span> LIVE FEED</span>
                 </div>
-                <div class="status-indicator">
-                  <span class="status-dot pulsing"></span>
-                  <span class="status-text">SYSTEM: ONLINE</span>
+
+                <div class="cyber-photo-container">
+                  <div class="matrix-grid"></div>
+                  <img src="/profile.jpg" alt="Jashandeep Singh - Profile Portrait" id="profile-photo-display" class="cyber-photo-img user-photo-target" />
+                  <div class="photo-holo-overlay"></div>
+                  <div class="photo-scanlines"></div>
+                  <div class="photo-reticle"></div>
+                  <div class="photo-crosshair"></div>
+                </div>
+
+                <div class="cyber-photo-footer">
+                  <div class="status-indicator">
+                    <span class="status-dot pulsing"></span>
+                    <span class="status-text">STATUS: VERIFIED OPERATOR</span>
+                  </div>
+                  <div class="cyber-badge-id">
+                    <span>SYS // ARCHITECT</span>
+                  </div>
                 </div>
               </div>
             </div>

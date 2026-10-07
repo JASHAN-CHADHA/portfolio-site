@@ -664,6 +664,100 @@ nav {
   padding-bottom: 100px; /* Shift content up to prevent overlapping scroll indicator */
 }
 
+/* -------------------------------------------------------------
+ * Front Hero Avatar Badge (Instant Recognition)
+ * ------------------------------------------------------------- */
+.hero-avatar-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border-hover);
+  padding: 8px 20px 8px 8px;
+  border-radius: 40px;
+  margin-bottom: 24px;
+  text-decoration: none;
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), var(--glow-cyan);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s, box-shadow 0.3s;
+}
+
+.hero-avatar-badge:hover {
+  transform: translateY(-3px) scale(1.03);
+  border-color: var(--primary-color);
+  box-shadow: 0 15px 35px rgba(0, 242, 254, 0.3), var(--glow-cyan);
+}
+
+.hero-avatar-ring {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-purple), var(--accent-pink));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-avatar-pulse-ring {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary-color);
+  animation: heroRingPulse 2.4s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@keyframes heroRingPulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.2; }
+  100% { transform: scale(1.3); opacity: 0; }
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  background: #05050a;
+  border: 2.5px solid #05050a;
+}
+
+.hero-avatar-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2px;
+}
+
+.hero-avatar-status {
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.hero-avatar-name {
+  font-family: var(--font-title);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
 .sub-title {
   font-family: var(--font-title);
   font-size: 0.85rem;
@@ -777,25 +871,225 @@ nav {
   justify-content: center;
 }
 
-.visual-card {
+/* -------------------------------------------------------------
+ * Cyberpunk Holographic Photo Frame (About Section)
+ * ------------------------------------------------------------- */
+.cyber-photo-card {
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 1;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
+  padding: 22px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.18);
   position: relative;
+  overflow: hidden;
+  background: rgba(8, 10, 22, 0.72);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
-.profile-placeholder {
+.cyber-photo-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), var(--glow-cyan), var(--glow-purple);
+}
+
+/* 4 Cyber Tech Corners */
+.cyber-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.corner-tl {
+  top: 10px;
+  left: 10px;
+  border-top: 2.5px solid var(--primary-color);
+  border-left: 2.5px solid var(--primary-color);
+}
+
+.corner-tr {
+  top: 10px;
+  right: 10px;
+  border-top: 2.5px solid var(--accent-pink);
+  border-right: 2.5px solid var(--accent-pink);
+}
+
+.corner-bl {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 2.5px solid var(--accent-purple);
+  border-left: 2.5px solid var(--accent-purple);
+}
+
+.corner-br {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2.5px solid var(--primary-color);
+  border-right: 2.5px solid var(--primary-color);
+}
+
+/* Photo Header */
+.cyber-photo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-family: var(--font-title);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+}
+
+.cyber-chip {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip-glow {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-shadow: 0 0 8px var(--primary-color);
+}
+
+.cyber-live-rec {
+  color: #ff007a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.rec-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #ff007a;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff007a;
+}
+
+/* Photo Container */
+.cyber-photo-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.85);
+  background: #030308;
+}
+
+.cyber-photo-img {
   width: 100%;
   height: 100%;
-  position: relative;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+  filter: contrast(1.05) brightness(1.02);
+}
+
+.cyber-photo-card:hover .cyber-photo-img {
+  transform: scale(1.02);
+}
+
+/* Holographic dynamic gradient sheen overlay */
+.photo-holo-overlay {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 35%,
+    rgba(0, 242, 254, 0.15) 45%,
+    rgba(189, 0, 255, 0.18) 50%,
+    rgba(255, 0, 122, 0.15) 55%,
+    transparent 65%
+  );
+  transform: rotate(25deg) translateY(-80%);
+  transition: transform 0.8s ease-in-out;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.cyber-photo-card:hover .photo-holo-overlay {
+  transform: rotate(25deg) translateY(40%);
+}
+
+/* CRT Scanlines across photo */
+.photo-scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+  background-size: 100% 3px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Sci-fi HUD crosshair reticle */
+.photo-reticle {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  border-top: 1.5px solid rgba(0, 242, 254, 0.65);
+  border-right: 1.5px solid rgba(0, 242, 254, 0.65);
+  pointer-events: none;
+}
+
+.photo-crosshair {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  width: 26px;
+  height: 26px;
+  border-bottom: 1.5px solid rgba(189, 0, 255, 0.65);
+  border-left: 1.5px solid rgba(189, 0, 255, 0.65);
+  pointer-events: none;
+}
+
+/* Photo Footer */
+.cyber-photo-footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  margin-top: 16px;
+  gap: 10px;
+}
+
+.cyber-photo-footer .status-indicator {
+  position: static;
+  margin: 0;
+  font-size: 0.64rem;
+}
+
+.cyber-badge-id {
+  font-family: var(--font-title);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--primary-color);
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.22);
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.35);
+  display: inline-flex;
+  align-items: center;
+}
+
+.hidden-file-input {
+  display: none !important;
 }
 
 .matrix-grid {
@@ -2833,6 +3127,38 @@ body.light-theme .chatbot-trigger-avatar {
   color: #0284c7;
 }
 
+/* --- Hero Avatar & Cyber Photo Light Mode Overrides --- */
+body.light-theme .hero-avatar-badge {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(2, 132, 199, 0.3);
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08), var(--glow-cyan);
+}
+
+body.light-theme .hero-avatar-name {
+  color: #0f172a;
+}
+
+body.light-theme .hero-avatar-img {
+  border-color: #ffffff;
+}
+
+body.light-theme .cyber-photo-card {
+  background: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(2, 132, 199, 0.35) !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 0 25px rgba(2, 132, 199, 0.15);
+}
+
+body.light-theme .cyber-chip {
+  color: #64748b;
+}
+
+body.light-theme .cyber-badge-id {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.25);
+  color: #0284c7;
+  text-shadow: none;
+}
+
 /* =============================================================
  * Start Ride / Game Button Styles
  * ============================================================= */
@@ -2857,4 +3183,148 @@ body.light-theme .btn-game {
   background: linear-gradient(90deg, #7c3aed, #e11d48);
   color: #ffffff !important;
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+}
+
+/* =============================================================
+ * MOBILE LAYOUT — Prevent icon/button overlapping
+ * ============================================================= */
+@media (max-width: 768px) {
+
+  /* ── Bottom-right UI controls: stack vertically so they don't
+        collide with the chatbot trigger on the left ── */
+  .ui-controls {
+    bottom: 20px;
+    right: 16px;
+    flex-direction: column-reverse; /* theme toggle on top, music below */
+    gap: 10px;
+  }
+
+  .control-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* ── Chatbot trigger: collapse to icon-only on mobile ── */
+  .chatbot-trigger-btn {
+    bottom: 20px;
+    left: 16px;
+    padding: 8px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  /* Hide the text label; keep only the avatar */
+  .chatbot-trigger-label {
+    display: none;
+  }
+
+  /* Slightly larger avatar touch target */
+  .chatbot-trigger-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 1.35rem;
+  }
+
+  /* ── Chatbot window: full-width, anchored above trigger row ── */
+  .chatbot-container {
+    bottom: 80px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-width: none;
+    max-height: calc(100vh - 110px);
+  }
+
+  /* ── Terminal window: full-width, clear controls ── */
+  .terminal-container {
+    bottom: 80px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: none;
+    max-height: calc(100vh - 110px);
+  }
+
+  /* ── About stats: wrap onto two rows instead of cramping ── */
+  .about-stats {
+    flex-wrap: wrap;
+    gap: 20px 30px;
+  }
+
+  /* ── Contact methods: shrink gap on small screens ── */
+  .contact-methods {
+    gap: 18px;
+  }
+
+  /* ── Hero: tighten bottom padding ── */
+  #hero {
+    padding-bottom: 60px;
+  }
+
+  /* ── Form card: reduce inner padding ── */
+  .form-card {
+    padding: 24px 18px;
+  }
+
+  /* ── Cyber Photo & Hero Avatar on mobile ── */
+  .hero-avatar-badge {
+    margin-bottom: 18px;
+    padding: 6px 16px 6px 6px;
+    gap: 10px;
+  }
+
+  .hero-avatar-ring {
+    width: 56px;
+    height: 56px;
+  }
+
+  .hero-avatar-name {
+    font-size: 0.8rem;
+  }
+
+  .cyber-photo-card {
+    max-width: 320px;
+    padding: 16px;
+    margin: 0 auto;
+  }
+
+  .cyber-photo-footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 480px) {
+  .ui-controls {
+    right: 12px;
+    bottom: 16px;
+    gap: 8px;
+  }
+
+  .chatbot-trigger-btn {
+    left: 12px;
+    bottom: 16px;
+  }
+
+  .chatbot-container {
+    bottom: 72px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .terminal-container {
+    bottom: 72px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
 }
